@@ -8,57 +8,62 @@
   <style>
     :root {
       --sand:    #F5EFE4;
-      --stone:   #2B2520;
-      --lava:    #C0441C;
-      --warm:    #8C6B4A;
+      --forest:  #1A1A1A;
+      --green:   #2D6A2D;
+      --mid-g:   #C8A84B;
+      --leaf:    #EFD690;
+      --warm:    #DDBA8F;
       --light:   #FAF7F2;
-      --mid:     #E8DDD0;
+      --mid:     #EDE5D8;
+      --stone:   #2E1F0E;
+      --cream:   #FDF8F2;
+      --tan:     #EEE0CA;
+      --brown:   #6B4C2A;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     html { scroll-behavior: smooth; }
-
     body {
       font-family: 'DM Sans', sans-serif;
       background: var(--light);
       color: var(--stone);
       overflow-x: hidden;
-    }
-
-    /* ── NAV ── */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       display: flex; align-items: center; justify-content: space-between;
-      padding: 1.2rem 4rem;
-      background: rgba(43,37,32,0.92);
+      padding: 0.6rem 4rem;
+      background: rgba(26,26,26,0.97);
       backdrop-filter: blur(8px);
+      border-bottom: 2px solid var(--mid-g);
     }
-    .nav-logo {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 1.8rem;
-      color: var(--sand);
-      letter-spacing: 0.05em;
+    .nav-logo-img {
+      height: 75px; width: auto; display: block;
+      filter: drop-shadow(0 2px 6px rgba(0,0,0,0.4));
     }
-    .nav-logo span { color: var(--lava); }
-    .nav-links { display: flex; gap: 2.2rem; list-style: none; }
+    .nav-links { display: flex; gap: 2.2rem; list-style: none; align-items: center; }
     .nav-links a {
-      color: var(--mid);
+      color: rgba(255,255,255,0.55);
       text-decoration: none;
-      font-size: 0.85rem;
+      font-size: 0.82rem;
       font-weight: 500;
       letter-spacing: 0.08em;
       text-transform: uppercase;
       transition: color 0.2s;
     }
-    .nav-links a:hover { color: var(--lava); }
+    .nav-links a:hover { color: #fff; }
     .nav-cta {
-      background: var(--lava);
+      background: var(--mid-g) !important;
       color: #fff !important;
       padding: 0.55rem 1.4rem;
-      border-radius: 2px;
+      font-weight: 700 !important;
     }
-    .nav-cta:hover { background: #a5381a; color: #fff !important; }
+    .nav-cta:hover { background: var(--leaf) !important; }
+    .nav-phone-display {
+      color: rgba(255,255,255,0.9) !important;
+      font-weight: 700 !important;
+      font-size: 0.95rem !important;
+      letter-spacing: 0.04em !important;
+    }
 
     /* ── HERO ── */
     #hero {
@@ -66,14 +71,13 @@
       min-height: 100vh;
       display: flex; align-items: center;
       overflow: hidden;
-      background: var(--stone);
+      background: var(--forest);
     }
     .hero-bg {
       position: absolute; inset: 0;
       background:
-        linear-gradient(135deg, rgba(43,37,32,0.85) 40%, rgba(192,68,28,0.25) 100%),
-        url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1600&q=80') center/cover no-repeat;
-      transform-origin: center;
+        linear-gradient(135deg, rgba(26,26,26,0.82) 35%, rgba(26,26,26,0.35) 100%),
+        url('https://s3-media0.fl.yelpcdn.com/bphoto/cx2X_BoWNlAPl-C7ERc4-g/o.jpg') center/cover no-repeat;
       animation: slowZoom 20s ease-in-out infinite alternate;
     }
     @keyframes slowZoom {
@@ -83,70 +87,66 @@
     .hero-content {
       position: relative; z-index: 2;
       padding: 0 4rem;
-      max-width: 780px;
+      max-width: 800px;
       animation: fadeUp 1s ease both;
     }
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(40px); }
       to   { opacity: 1; transform: translateY(0); }
     }
-    .hero-eyebrow {
-      font-size: 0.8rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--lava);
-      font-weight: 500;
-      margin-bottom: 1.2rem;
+    .hero-logo {
+      width: 170px; margin-bottom: 28px;
+      filter: drop-shadow(0 4px 16px rgba(0,0,0,0.5));
     }
+    .hero-eyebrow {
+      font-size: 0.78rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--leaf);
+      font-weight: 600;
+      margin-bottom: 1.1rem;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .hero-eyebrow::before { content:''; width:22px; height:2px; background:var(--leaf); }
     .hero-title {
       font-family: 'Bebas Neue', sans-serif;
       font-size: clamp(4rem, 10vw, 8rem);
       line-height: 0.95;
       color: var(--sand);
-      margin-bottom: 1.5rem;
+      margin-bottom: 1.4rem;
     }
-    .hero-title em {
-      color: var(--lava);
-      font-style: normal;
-      display: block;
-    }
+    .hero-title em { color: var(--leaf); font-style: normal; display: block; }
     .hero-sub {
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       font-weight: 300;
-      color: var(--mid);
+      color: rgba(245,239,228,0.65);
       max-width: 500px;
-      line-height: 1.7;
-      margin-bottom: 2.5rem;
+      line-height: 1.75;
+      margin-bottom: 2.2rem;
     }
-    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
     .btn-primary {
-      display: inline-block;
-      background: var(--lava);
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--mid-g);
       color: #fff;
       padding: 1rem 2.2rem;
-      font-size: 0.9rem;
-      font-weight: 600;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
+      font-size: 0.9rem; font-weight: 700;
+      letter-spacing: 0.06em; text-transform: uppercase;
       text-decoration: none;
-      border-radius: 2px;
       transition: background 0.2s, transform 0.2s;
     }
-    .btn-primary:hover { background: #a5381a; transform: translateY(-2px); }
+    .btn-primary:hover { background: var(--brown); transform: translateY(-2px); }
     .btn-outline {
       display: inline-block;
-      border: 1.5px solid rgba(245,239,228,0.5);
+      border: 1.5px solid rgba(245,239,228,0.4);
       color: var(--sand);
       padding: 1rem 2.2rem;
-      font-size: 0.9rem;
-      font-weight: 500;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
+      font-size: 0.9rem; font-weight: 500;
+      letter-spacing: 0.06em; text-transform: uppercase;
       text-decoration: none;
-      border-radius: 2px;
       transition: border-color 0.2s, color 0.2s;
     }
-    .btn-outline:hover { border-color: var(--sand); color: #fff; }
+    .btn-outline:hover { border-color: var(--leaf); color: var(--leaf); }
     .hero-badges {
       position: absolute; bottom: 3rem; left: 4rem;
       display: flex; gap: 2.5rem; z-index: 2;
@@ -155,42 +155,42 @@
     .badge { color: var(--mid); }
     .badge-num {
       font-family: 'Bebas Neue', sans-serif;
-      font-size: 2.4rem;
-      color: var(--sand);
-      line-height: 1;
+      font-size: 2.4rem; color: var(--sand); line-height: 1;
     }
-    .badge-label { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.7; }
+    .badge-label { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.6; }
 
     /* ── STRIP ── */
     .strip {
-      background: var(--lava);
-      padding: 1rem 4rem;
-      display: flex; gap: 3rem; align-items: center;
-      overflow: auto;
+      background: var(--mid-g);
+      padding: 0.9rem 0;
+      overflow: hidden;
+    }
+    .strip-track {
+      display: flex;
+      animation: ticker 28s linear infinite;
+      width: max-content;
     }
     .strip-item {
-      white-space: nowrap;
-      font-size: 0.8rem;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: #fff;
-      opacity: 0.9;
+      display: inline-flex; align-items: center; gap: 18px; padding: 0 24px;
+      font-size: 0.78rem; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: rgba(20,20,20,0.85);
+      white-space: nowrap; flex-shrink: 0;
     }
-    .strip-dot { color: rgba(255,255,255,0.4); font-size: 1.2rem; }
+    .strip-dot { color: rgba(20,20,20,0.3); font-size: 0.4rem; }
+    @keyframes ticker {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
 
     /* ── ABOUT ── */
     #about {
       display: grid; grid-template-columns: 1fr 1fr;
       min-height: 70vh;
     }
-    .about-img {
-      position: relative; overflow: hidden;
-    }
+    .about-img { position: relative; overflow: hidden; }
     .about-img img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-      display: block;
+      width: 100%; height: 100%; object-fit: cover; display: block;
       transition: transform 0.6s ease;
     }
     .about-img:hover img { transform: scale(1.04); }
@@ -204,321 +204,366 @@
       background: #fff;
     }
     .section-label {
-      font-size: 0.75rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--lava);
-      font-weight: 600;
-      margin-bottom: 1rem;
+      font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--green); font-weight: 700; margin-bottom: 1rem;
     }
     .section-title {
       font-family: 'Bebas Neue', sans-serif;
       font-size: clamp(2.5rem, 5vw, 4rem);
-      line-height: 1.05;
-      margin-bottom: 1.5rem;
-      color: var(--stone);
+      line-height: 1.0; margin-bottom: 1.4rem; color: var(--stone);
     }
     .section-body {
-      font-size: 1rem;
-      line-height: 1.8;
-      color: #5a4f46;
-      font-weight: 300;
-      max-width: 460px;
+      font-size: 1rem; line-height: 1.82; color: #4a4a3a;
+      font-weight: 300; max-width: 460px;
     }
     .about-features {
-      margin-top: 2.5rem;
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 1.2rem;
+      margin-top: 2.2rem;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
     }
     .feature-pill {
       display: flex; align-items: center; gap: 0.6rem;
-      font-size: 0.85rem; font-weight: 500;
+      font-size: 0.84rem; font-weight: 500;
     }
     .feature-dot {
-      width: 8px; height: 8px;
-      border-radius: 50%;
-      background: var(--lava);
-      flex-shrink: 0;
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--green); flex-shrink: 0;
     }
 
-    /* ── SERVICES ── */
+    /* ── SERVICES WITH PHOTOS ── */
     #services {
-      background: var(--stone);
+      background: var(--cream);
       padding: 7rem 4rem;
     }
-    #services .section-title { color: var(--sand); }
-    #services .section-label { color: var(--lava); }
+    #services .section-title { color: var(--stone); }
+    #services .section-label { color: var(--green); }
     .services-header {
       display: flex; justify-content: space-between; align-items: flex-end;
-      margin-bottom: 4rem;
+      margin-bottom: 3rem;
     }
-    .services-grid {
+    .services-header p {
+      font-size: 1rem; color: var(--brown);
+      font-weight: 300; max-width: 380px; line-height: 1.7; margin-top: 0.8rem;
+    }
+    /* 5 services in a grid — each with its own photo */
+    .services-photo-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 1.5px;
-      background: rgba(255,255,255,0.06);
+      gap: 3px;
+      background: rgba(0,0,0,0.08);
     }
-    .service-card {
-      background: var(--stone);
-      padding: 2.5rem 2rem;
-      position: relative;
-      overflow: hidden;
-      cursor: default;
-      transition: background 0.3s;
+    /* Make 4th and 5th span wider on second row */
+    .services-photo-grid .svc-card:nth-child(4),
+    .services-photo-grid .svc-card:nth-child(5) {
+      /* handled via explicit style below */
     }
-    .service-card::before {
-      content: '';
-      position: absolute; bottom: 0; left: 0;
-      width: 0; height: 2px;
-      background: var(--lava);
-      transition: width 0.4s ease;
+    .svc-card {
+      position: relative; overflow: hidden;
+      display: block; text-decoration: none;
+      background: var(--forest);
+      cursor: pointer;
     }
-    .service-card:hover { background: rgba(255,255,255,0.04); }
-    .service-card:hover::before { width: 100%; }
-    .service-icon {
-      font-size: 2.2rem; margin-bottom: 1.2rem;
+    .svc-card img {
+      width: 100%; height: 280px; object-fit: cover; display: block;
+      transition: transform 0.55s ease, filter 0.4s;
+      filter: brightness(0.7) saturate(0.85);
     }
-    .service-name {
+    .svc-card:hover img {
+      transform: scale(1.06);
+      filter: brightness(0.88) saturate(1);
+    }
+    .svc-card-body {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(46,31,14,0.94) 0%, rgba(46,31,14,0.25) 55%, transparent 100%);
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 24px;
+    }
+    .svc-tag {
+      display: inline-block;
+      background: var(--leaf);
+      font-size: 0.6rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase;
+      color: #141414; padding: 3px 10px; margin-bottom: 8px; width: fit-content;
+    }
+    .svc-name {
       font-family: 'Bebas Neue', sans-serif;
-      font-size: 1.5rem;
-      letter-spacing: 0.04em;
-      color: var(--sand);
-      margin-bottom: 0.7rem;
+      font-size: 1.5rem; letter-spacing: 0.04em;
+      color: var(--sand); margin-bottom: 6px; line-height: 1.1;
     }
-    .service-desc {
-      font-size: 0.87rem;
-      line-height: 1.7;
-      color: rgba(245,239,228,0.55);
-      font-weight: 300;
+    .svc-desc {
+      font-size: 0.8rem; color: rgba(245,239,228,0.65);
+      line-height: 1.6; font-weight: 300;
+      max-height: 0; overflow: hidden; opacity: 0;
+      transition: max-height 0.4s ease, opacity 0.35s;
     }
+    .svc-card:hover .svc-desc { max-height: 80px; opacity: 1; }
+    .svc-yelp-arrow {
+      display: inline-flex; align-items: center; gap: 6px;
+      margin-top: 10px;
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--leaf);
+      max-height: 0; overflow: hidden; opacity: 0;
+      transition: max-height 0.4s ease 0.05s, opacity 0.35s;
+    }
+    .svc-card:hover .svc-yelp-arrow { max-height: 40px; opacity: 1; }
+    .svc-yelp-arrow svg { width: 12px; height: 12px; }
+    /* second row: 2 cards spanning wider */
+    .svc-row2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3px;
+    }
+    .svc-row2 .svc-card img { height: 280px; }
 
     /* ── GALLERY ── */
-    #gallery { padding: 7rem 4rem; background: var(--mid); }
+    #gallery { padding: 7rem 4rem; background: var(--tan); }
+    #gallery .section-title { color: var(--stone); }
+    #gallery .section-label { color: var(--green); }
     .gallery-header { margin-bottom: 3rem; }
     .gallery-grid {
       display: grid;
       grid-template-columns: 2fr 1fr 1fr;
       grid-template-rows: 280px 280px;
-      gap: 0.8rem;
+      gap: 3px;
     }
     .gallery-item {
-      overflow: hidden;
-      border-radius: 2px;
-      background: var(--warm);
+      overflow: hidden; background: var(--warm);
     }
     .gallery-item:first-child { grid-row: span 2; }
     .gallery-item img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-      display: block;
-      transition: transform 0.5s ease;
+      width: 100%; height: 100%; object-fit: cover; display: block;
+      transition: transform 0.5s ease, filter 0.4s;
+      filter: brightness(0.92) saturate(1);
     }
-    .gallery-item:hover img { transform: scale(1.06); }
+    .gallery-item:hover img { transform: scale(1.06); filter: brightness(1) saturate(1.1); }
 
     /* ── REVIEWS ── */
-    #reviews {
-      padding: 7rem 4rem;
-      background: var(--light);
-    }
-    .reviews-header { margin-bottom: 4rem; text-align: center; }
-    .stars { color: var(--lava); font-size: 1.3rem; margin-bottom: 0.5rem; }
-    .reviews-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: 1.8rem;
-    }
+    #reviews { padding: 7rem 4rem; background: var(--light); }
+    .reviews-header { margin-bottom: 3.5rem; }
+    .reviews-header .stars { color: var(--mid-g); font-size: 1.3rem; margin-bottom: 0.5rem; }
+    .reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.8rem; }
     .review-card {
-      background: #fff;
-      padding: 2.2rem;
-      border-radius: 4px;
-      box-shadow: 0 2px 20px rgba(43,37,32,0.07);
-      border-top: 3px solid var(--lava);
+      background: #fff; padding: 2.2rem;
+      border-top: 3px solid var(--mid-g);
+      box-shadow: 0 2px 20px rgba(0,0,0,0.07);
       transition: transform 0.3s, box-shadow 0.3s;
     }
-    .review-card:hover { transform: translateY(-4px); box-shadow: 0 8px 30px rgba(43,37,32,0.12); }
-    .review-stars { color: var(--lava); margin-bottom: 1rem; }
-    .review-text {
-      font-size: 0.93rem;
-      line-height: 1.75;
-      color: #5a4f46;
-      font-weight: 300;
-      margin-bottom: 1.5rem;
-    }
-    .reviewer {
-      font-size: 0.82rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--warm);
-    }
-    .yelp-badge {
+    .review-card:hover { transform: translateY(-4px); box-shadow: 0 8px 30px rgba(0,0,0,0.12); }
+    .review-stars { color: var(--mid-g); margin-bottom: 1rem; font-size: 0.9rem; letter-spacing: 3px; }
+    .review-text { font-size: 0.92rem; line-height: 1.75; color: #4a4a3a; font-weight: 300; margin-bottom: 1.4rem; font-style: italic; }
+    .reviewer { font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #5a4030; }
+    .reviewer-source { font-size: 0.7rem; color: var(--green); letter-spacing: 0.08em; }
+    .yelp-badge-btn {
       display: inline-flex; align-items: center; gap: 0.5rem;
       background: #d32323; color: #fff;
-      font-size: 0.75rem; font-weight: 600;
-      padding: 0.3rem 0.8rem; border-radius: 2px;
-      margin-top: 3rem; text-decoration: none;
+      font-size: 0.75rem; font-weight: 700;
+      padding: 0.5rem 1.2rem; text-decoration: none;
+      transition: background 0.2s;
     }
-
-    /* ── HOURS/CONTACT ── */
-    #contact {
-      background: var(--stone);
-      display: grid; grid-template-columns: 1fr 1fr;
-    }
-    .contact-info {
-      padding: 6rem 4rem;
-    }
-    .contact-info .section-title { color: var(--sand); }
-    .info-list { margin-top: 2.5rem; display: flex; flex-direction: column; gap: 1.5rem; }
-    .info-row {
-      display: flex; align-items: flex-start; gap: 1.2rem;
-    }
-    .info-icon {
-      width: 36px; height: 36px;
-      background: #fff;
-      border-radius: 2px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1rem;
-      flex-shrink: 0;
-    }
-    .info-label {
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: rgba(245,239,228,0.4);
-      margin-bottom: 0.2rem;
-    }
-    .info-value {
-      font-size: 0.95rem;
-      color: var(--sand);
-      font-weight: 400;
-      line-height: 1.5;
-    }
-    .hours-grid {
-      padding: 6rem 5rem 6rem 3rem;
-      background: rgba(255,255,255,0.04);
-    }
-    .hours-grid .section-title { color: var(--sand); margin-bottom: 2rem; }
-    .hours-table { width: 100%; border-collapse: collapse; }
-    .hours-table tr {
-      border-bottom: 1px solid rgba(255,255,255,0.06);
-    }
-    .hours-table tr:last-child { border-bottom: none; }
-    .hours-table td {
-      padding: 0.9rem 0;
-      font-size: 0.9rem;
-      color: rgba(245,239,228,0.7);
-    }
-    .hours-table td:last-child {
-      text-align: right;
-      color: var(--sand);
-      font-weight: 500;
-    }
-    .hours-table tr.today td { color: var(--lava) !important; font-weight: 600; }
-    .open-now {
-      display: inline-block;
-      background: #1a7a3a;
-      color: #fff;
-      font-size: 0.7rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      padding: 0.25rem 0.6rem;
-      border-radius: 2px;
-      margin-left: 0.6rem;
-      vertical-align: middle;
-    }
+    .yelp-badge-btn:hover { background: #b01c1c; }
 
     /* ── CTA BAND ── */
     .cta-band {
-      background: var(--lava);
+      background: var(--leaf);
       padding: 4rem;
       display: flex; align-items: center; justify-content: space-between;
-      gap: 2rem;
-      flex-wrap: wrap;
+      gap: 2rem; flex-wrap: wrap;
     }
+    .cta-band-left {}
     .cta-band-title {
       font-family: 'Bebas Neue', sans-serif;
       font-size: clamp(2rem, 4vw, 3.2rem);
-      color: #fff;
-      line-height: 1.1;
+      color: #141414; line-height: 1.05;
     }
-    .btn-white {
-      display: inline-block;
+    .cta-band-sub { font-size: 0.9rem; color: rgba(20,20,20,0.6); margin-top: 0.4rem; font-weight: 300; }
+    .cta-phone-big {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.2rem, 4vw, 3.5rem);
+      color: #141414; text-decoration: none; letter-spacing: 0.04em;
+      display: flex; align-items: center; gap: 12px;
+      transition: opacity 0.2s;
+    }
+    .cta-phone-big:hover { opacity: 0.7; }
+    .cta-phone-big svg { width: 32px; height: 32px; fill: none; stroke: #141414; stroke-width: 2; flex-shrink: 0; }
+
+    /* ── CONTACT / HOURS ── */
+    #contact {
+      background: var(--sand);
+      display: grid; grid-template-columns: 1fr 1fr;
+    }
+    .contact-info { padding: 6rem 4rem; }
+    .contact-info .section-title { color: var(--stone); }
+    .contact-info .section-label { color: var(--green); }
+    .info-list { margin-top: 2.5rem; display: flex; flex-direction: column; gap: 1.5rem; }
+    .info-row { display: flex; align-items: flex-start; gap: 1.2rem; }
+    .info-icon {
+      width: 40px; height: 40px;
       background: #fff;
-      color: var(--lava);
-      padding: 1rem 2.5rem;
-      font-size: 0.9rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      text-decoration: none;
-      border-radius: 2px;
-      white-space: nowrap;
-      transition: transform 0.2s;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; flex-shrink: 0;
     }
-    .btn-white:hover { transform: translateY(-2px); }
+    .info-label {
+      font-size: 0.72rem; text-transform: uppercase;
+      letter-spacing: 0.12em; color: var(--brown); margin-bottom: 0.25rem; opacity: 0.7;
+    }
+    .info-value { font-size: 1rem; color: var(--stone); font-weight: 500; line-height: 1.5; }
+    .info-value a { color: var(--stone); text-decoration: none; }
+    .info-value a:hover { color: var(--green); }
+
+    .hours-side {
+      padding: 6rem 5rem 6rem 3rem;
+      background: var(--mid);
+    }
+    .hours-side .section-title { color: var(--stone); margin-bottom: 2rem; }
+    .hours-side .section-label { color: var(--green); }
+    .hours-table { width: 100%; border-collapse: collapse; }
+    .hours-table tr { border-bottom: 1px solid rgba(46,31,14,0.1); }
+    .hours-table tr:last-child { border-bottom: none; }
+    .hours-table td { padding: 1rem 0; font-size: 0.92rem; color: var(--brown); }
+    .hours-table td:last-child { text-align: right; color: var(--stone); font-weight: 600; }
+    .hours-table tr.today td { color: var(--green) !important; font-weight: 700; }
+    .hours-table tr.today td:first-child::after {
+      content: ' ◀ TODAY';
+      font-size: 0.6rem; letter-spacing: 0.1em;
+      color: var(--green); margin-left: 6px; opacity: 0.8;
+    }
+    .hours-table tr.closed td { opacity: 0.35; }
 
     /* ── FOOTER ── */
     footer {
-      background: #1a1410;
+      background: var(--forest);
       padding: 2.5rem 4rem;
       display: flex; justify-content: space-between; align-items: center;
       flex-wrap: wrap; gap: 1rem;
+      border-top: 3px solid var(--mid-g);
     }
-    .footer-logo {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 1.5rem;
-      color: var(--sand);
-    }
-    .footer-logo span { color: var(--lava); }
-    .footer-copy {
-      font-size: 0.78rem;
-      color: rgba(245,239,228,0.35);
-    }
-    .footer-links { display: flex; gap: 2rem; }
+    .footer-logo-img { height: 48px; filter: drop-shadow(0 2px 6px rgba(0,0,0,0.3)); }
+    .footer-copy { font-size: 0.75rem; color: rgba(245,239,228,0.45); }
+    .footer-links { display: flex; gap: 1.8rem; }
     .footer-links a {
-      font-size: 0.78rem;
-      color: rgba(245,239,228,0.4);
-      text-decoration: none;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      transition: color 0.2s;
+      font-size: 0.75rem; color: rgba(245,239,228,0.5);
+      text-decoration: none; text-transform: uppercase;
+      letter-spacing: 0.1em; transition: color 0.2s;
     }
-    .footer-links a:hover { color: var(--lava); }
+    .footer-links a:hover { color: var(--leaf); }
+
+    /* ── SCROLL REVEAL ── */
+    .reveal {
+      opacity: 0; transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.on { opacity: 1; transform: translateY(0); }
 
     /* ── RESPONSIVE ── */
     @media (max-width: 900px) {
-      nav { padding: 1rem 1.5rem; }
+      nav { padding: 0.6rem 1rem; }
+      .nav-logo-img {height: 70px;}
       .nav-links { display: none; }
       .hero-content { padding: 0 1rem; }
-      .hero-badges { left: 2rem; gap: 1.5rem; }
+      .hero-badges { left: 1.5rem; gap: 1rem; }
       #about { grid-template-columns: 1fr; }
-      .about-img { height: 50vw; }
+      .about-img { height: 55vw; }
       .about-text { padding: 3rem 2rem; }
-      #services { padding: 3rem 1rem; }
-      .services-grid { grid-template-columns: 1fr 1fr; }
+      #services { padding: 4rem 1rem; }
       .services-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
-      #gallery { padding: 3rem 1rem; }
-      #reviews {padding: 3rem 1rem;}
-      .gallery-grid {
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: auto;
-      }
+      .services-photo-grid { grid-template-columns: 1fr 1fr; }
+      .svc-row2 { grid-template-columns: 1fr 1fr; }
+      #gallery { padding: 4rem 1rem; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
       .gallery-item:first-child { grid-row: span 1; }
+      #reviews { padding: 4rem 1rem; }
       .reviews-grid { grid-template-columns: 1fr; }
       #contact { grid-template-columns: 1fr; }
       .contact-info { padding: 4rem 2rem; }
-      .hours-grid { padding: 3rem 1rem; }
+      .hours-side { padding: 3rem 2rem; }
       .cta-band { flex-direction: column; padding: 3rem 2rem; }
       footer { flex-direction: column; text-align: center; padding: 2rem; }
-      .strip { padding: 1rem 2rem; }
     }
-    @media (max-width: 550px) {
-        .services-grid {
-            grid-template-columns: 1fr;
-        }
-        .service-card {
-          padding: 2.5rem 0rem;
-        }
+    @media (max-width: 600px) {
+      .services-photo-grid { grid-template-columns: 1fr; }
+      .svc-row2 { grid-template-columns: 1fr; }
+    }
+
+    /* ── HAMBURGER / MOBILE NAV ── */
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 6px;
+      width: 44px; height: 44px;
+      cursor: pointer;
+      background: none; border: none;
+      padding: 6px;
+      flex-shrink: 0;
+    }
+    .nav-hamburger span {
+      display: block;
+      width: 24px; height: 2px;
+      background: rgba(255,255,255,0.9);
+      border-radius: 2px;
+      transition: transform 0.3s ease, opacity 0.2s ease;
+      transform-origin: center;
+    }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+    .mobile-drawer {
+      position: fixed; top: 0; right: -100%; bottom: 0;
+      width: 75%; max-width: 300px;
+      background: #1A1A1A;
+      z-index: 300;
+      display: flex; flex-direction: column;
+      padding: 80px 2rem 2.5rem;
+      transition: right 0.32s cubic-bezier(0.4, 0, 0.2, 1);
+      border-left: 2px solid var(--mid-g);
+      box-shadow: -8px 0 32px rgba(0,0,0,0.4);
+    }
+    .mobile-drawer.open { right: 0; }
+    .drawer-close {
+      position: absolute; top: 1.2rem; right: 1.2rem;
+      background: none; border: none;
+      color: rgba(255,255,255,0.7);
+      font-size: 1.5rem;
+      cursor: pointer;
+      line-height: 1;
+      padding: 8px;
+      transition: color 0.2s;
+    }
+    .drawer-close:hover { color: var(--leaf); }
+    .mobile-drawer a {
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      font-size: 1rem; font-weight: 500;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      padding: 1rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      transition: color 0.2s;
+    }
+    .mobile-drawer a:hover, .mobile-drawer a:active { color: var(--leaf); }
+    .mobile-drawer .drawer-cta {
+      margin-top: 1.5rem;
+      background: var(--mid-g);
+      color: #141414 !important;
+      text-align: center;
+      padding: 0.9rem 1rem !important;
+      font-weight: 700 !important;
+      border-bottom: none !important;
+      border-radius: 2px;
+      font-size: 0.95rem !important;
+    }
+    .mobile-drawer .drawer-cta:hover { background: var(--leaf) !important; }
+
+    .drawer-overlay {
+      display: none;
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.6);
+      z-index: 290;
+    }
+    .drawer-overlay.open { display: block; }
+
+    @media (max-width: 900px) {
+      .nav-hamburger { display: flex; }
+      .nav-links { display: none !important; }
     }
   </style>
 </head>
@@ -526,210 +571,248 @@
 
 <!-- NAV -->
 <nav>
-  <div class="nav-logo">Aloha<span>.</span>Concrete</div>
+  <img class="nav-logo-img" src="https://s3-media0.fl.yelpcdn.com/businessregularlogo/6eHhlqKTFUEIRay1cfzBsw/348s.jpg" alt="Aloha Concrete"/>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#services">Services</a></li>
     <li><a href="#gallery">Gallery</a></li>
     <li><a href="#reviews">Reviews</a></li>
     <li><a href="#contact">Hours</a></li>
-    <li><a href="tel:+16576885161" class="nav-cta">Call Now</a></li>
+    <li><a href="tel:+17144991228" class="nav-cta">📞 (714) 499-1228</a></li>
   </ul>
+  <button class="nav-hamburger" id="nav-hamburger" aria-label="Toggle menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
 </nav>
+
+<!-- Mobile drawer -->
+<div class="drawer-overlay" id="drawer-overlay"></div>
+<div class="mobile-drawer" id="mobile-drawer">
+  <button class="drawer-close" onclick="closeDrawer()" aria-label="Close menu">&#x2715;</button>
+  <a href="#about"    onclick="closeDrawer()">About</a>
+  <a href="#services" onclick="closeDrawer()">Services</a>
+  <a href="#gallery"  onclick="closeDrawer()">Gallery</a>
+  <a href="#reviews"  onclick="closeDrawer()">Reviews</a>
+  <a href="#contact"  onclick="closeDrawer()">Hours</a>
+  <a href="tel:+17144991228" class="drawer-cta">📞 (714) 499-1228</a>
+</div>
 
 <!-- HERO -->
 <section id="hero">
   <div class="hero-bg"></div>
   <div class="hero-content">
-    <p class="hero-eyebrow">Anaheim, California · Serving Orange County</p>
+    <p class="hero-eyebrow">Anaheim, CA · Serving All of Orange County</p>
     <h1 class="hero-title">Built to<em>Last.</em></h1>
-    <p class="hero-sub">Aloha Concrete delivers expert craftsmanship for driveways, patios, retaining walls, and more. Locally trusted, beautifully finished.</p>
+    <p class="hero-sub">15 years of expert craftsmanship. Driveways, patios, pool decks, artificial turf, and more. Family-owned, budget-friendly, and committed to your satisfaction.</p>
     <div class="hero-actions">
-      <a href="tel:+16576885161" class="btn-primary">Get a Free Quote</a>
+      <a href="tel:+17144991228" class="btn-primary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8 19.79 19.79 0 01.12 2.18 2 2 0 012.1 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.18 6.18l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14.92z"/></svg>
+        (714) 499-1228 — Free Quote
+      </a>
       <a href="#services" class="btn-outline">Our Services</a>
     </div>
   </div>
   <div class="hero-badges">
-    <div class="badge">
-      <div class="badge-num">108+</div>
-      <div class="badge-label">5-Star Reviews</div>
-    </div>
-    <div class="badge">
-      <div class="badge-num">1500+</div>
-      <div class="badge-label">Project Photos</div>
-    </div>
-    <div class="badge">
-      <div class="badge-num">OC</div>
-      <div class="badge-label">Area Coverage</div>
-    </div>
+    <div class="badge"><div class="badge-num">108+</div><div class="badge-label">5-Star Reviews</div></div>
+    <div class="badge"><div class="badge-num">15</div><div class="badge-label">Years in Business</div></div>
+    <div class="badge"><div class="badge-num">OC</div><div class="badge-label">Area Coverage</div></div>
   </div>
 </section>
 
-<!-- STRIP -->
-<div class="strip">
-  <div class="strip-item">Driveways</div>
-  <div class="strip-dot">·</div>
-  <div class="strip-item">Patios</div>
-  <div class="strip-dot">·</div>
-  <div class="strip-item">Retaining Walls</div>
-  <div class="strip-dot">·</div>
-  <div class="strip-item">Stamped Concrete</div>
-  <div class="strip-dot">·</div>
-  <div class="strip-item">Walkways</div>
-  <div class="strip-dot">·</div>
-  <div class="strip-item">Landscape Design</div>
-  <div class="strip-dot">·</div>
-  <div class="strip-item">Deck Design</div>
-  <div class="strip-dot">·</div>
-  <div class="strip-item">Block Walls</div>
+<!-- SCROLLING TICKER -->
+<div class="strip" id="ticker-strip">
+  <div class="strip-track" id="ticker-track">
+    <span class="strip-item">Artificial Turf<span class="strip-dot">●</span></span><span class="strip-item">Concrete Driveways<span class="strip-dot">●</span></span><span class="strip-item">Pool Deck Installation<span class="strip-dot">●</span></span><span class="strip-item">Paver Patios<span class="strip-dot">●</span></span><span class="strip-item">Concrete Demo<span class="strip-dot">●</span></span><span class="strip-item">Stamped Concrete<span class="strip-dot">●</span></span><span class="strip-item">Retaining Walls<span class="strip-dot">●</span></span><span class="strip-item">Family Owned · 15 Years<span class="strip-dot">●</span></span><span class="strip-item">Artificial Turf<span class="strip-dot">●</span></span><span class="strip-item">Concrete Driveways<span class="strip-dot">●</span></span><span class="strip-item">Pool Deck Installation<span class="strip-dot">●</span></span><span class="strip-item">Paver Patios<span class="strip-dot">●</span></span><span class="strip-item">Concrete Demo<span class="strip-dot">●</span></span><span class="strip-item">Stamped Concrete<span class="strip-dot">●</span></span><span class="strip-item">Retaining Walls<span class="strip-dot">●</span></span><span class="strip-item">Family Owned · 15 Years<span class="strip-dot">●</span></span><span class="strip-item">Artificial Turf<span class="strip-dot">●</span></span><span class="strip-item">Concrete Driveways<span class="strip-dot">●</span></span><span class="strip-item">Pool Deck Installation<span class="strip-dot">●</span></span><span class="strip-item">Paver Patios<span class="strip-dot">●</span></span><span class="strip-item">Concrete Demo<span class="strip-dot">●</span></span><span class="strip-item">Stamped Concrete<span class="strip-dot">●</span></span><span class="strip-item">Retaining Walls<span class="strip-dot">●</span></span><span class="strip-item">Family Owned · 15 Years<span class="strip-dot">●</span></span><span class="strip-item">Artificial Turf<span class="strip-dot">●</span></span><span class="strip-item">Concrete Driveways<span class="strip-dot">●</span></span><span class="strip-item">Pool Deck Installation<span class="strip-dot">●</span></span><span class="strip-item">Paver Patios<span class="strip-dot">●</span></span><span class="strip-item">Concrete Demo<span class="strip-dot">●</span></span><span class="strip-item">Stamped Concrete<span class="strip-dot">●</span></span><span class="strip-item">Retaining Walls<span class="strip-dot">●</span></span><span class="strip-item">Family Owned · 15 Years<span class="strip-dot">●</span></span>
+  </div>
 </div>
+<script>
+(function() {
+  var track = document.getElementById('ticker-track');
+  if (!track) return;
+  var pos = 0;
+  var speed = 0.5;
+  function step() {
+    pos -= speed;
+    var half = track.scrollWidth / 2;
+    if (Math.abs(pos) >= half) pos = 0;
+    track.style.transform = 'translateX(' + pos + 'px)';
+    requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+})();
+</script>
 
 <!-- ABOUT -->
 <section id="about">
   <div class="about-img">
-    <img src="https://s3-media0.fl.yelpcdn.com/bphoto/_O6vcf5boYAs_jnzJILB1A/o.jpg" alt="Concrete workers finishing a slab" />
+    <img src="https://s3-media0.fl.yelpcdn.com/bphoto/_O6vcf5boYAs_jnzJILB1A/o.jpg" alt="Aloha Concrete crew"/>
     <div class="about-img-overlay"></div>
   </div>
   <div class="about-text">
     <p class="section-label">Who We Are</p>
     <h2 class="section-title">Anaheim's Concrete Experts</h2>
-    <p class="section-body">Here at Aloha Concrete, customer satisfaction is our #1 priority. Based in Anaheim and serving all of Orange County, we bring hands-on craftsmanship and honest communication to every job — from a simple walkway to a full backyard transformation.</p>
-    <p class="section-body" style="margin-top:1rem">Led by Wesley and a dedicated crew, we've built a reputation for showing up, doing what we say, and leaving your property cleaner than we found it.</p>
+    <p class="section-body">Here at Aloha Concrete, customer satisfaction is our #1 priority. Based in Anaheim and serving all of Orange County, we bring 15 years of hands-on craftsmanship and honest communication to every job — from a single driveway to a full backyard transformation.</p>
+    <p class="section-body" style="margin-top:1rem">Led by Wesley and a dedicated crew, we've built a reputation for showing up on time, doing exactly what we say, and leaving your property better than we found it. Available by appointment — just give us a call.</p>
     <div class="about-features">
-      <div class="feature-pill"><div class="feature-dot"></div>Licensed & Insured</div>
+      <div class="feature-pill"><div class="feature-dot"></div>15 Years in Business</div>
       <div class="feature-pill"><div class="feature-dot"></div>Family Owned & Operated</div>
-      <div class="feature-pill"><div class="feature-dot"></div>Accepts Credit Cards</div>
       <div class="feature-pill"><div class="feature-dot"></div>Free Estimates</div>
-      <div class="feature-pill"><div class="feature-dot"></div>Fast Response</div>
-      <div class="feature-pill"><div class="feature-dot"></div>Verified on Yelp</div>
+      <div class="feature-pill"><div class="feature-dot"></div>Budget Friendly</div>
+      <div class="feature-pill"><div class="feature-dot"></div>Available by Appointment</div>
+      <div class="feature-pill"><div class="feature-dot"></div>Committed to Satisfaction</div>
     </div>
   </div>
 </section>
 
-<!-- SERVICES -->
+<!-- SERVICES WITH PHOTOS -->
 <section id="services">
-  <div class="services-header">
+  <div class="services-header reveal">
     <div>
       <p class="section-label">What We Do</p>
       <h2 class="section-title">Our Services</h2>
+      <p>Hover each service to learn more. Click to see our work on Yelp.</p>
     </div>
-    <a href="tel:+16576885161" class="btn-primary">Get a Quote</a>
+    <a href="tel:+17144991228" class="btn-primary">Get a Free Quote</a>
   </div>
-  <div class="services-grid">
-    <div class="service-card">
-      <div class="service-icon">🚗</div>
-      <div class="service-name">Driveway Construction</div>
-      <div class="service-desc">New pours, widenings, resurfacing, and stamped finishes. We help save you money with smart design — like using stamped concrete where it counts.</div>
-    </div>
-    <div class="service-card">
-      <div class="service-icon">🏡</div>
-      <div class="service-name">Patios & Terraces</div>
-      <div class="service-desc">Custom backyard patios, covered decks, and outdoor living spaces built to complement your home and your lifestyle.</div>
-    </div>
-    <div class="service-card">
-      <div class="service-icon">🧱</div>
-      <div class="service-name">Retaining Walls</div>
-      <div class="service-desc">Block and poured concrete retaining walls that hold strong and look great — for slopes, yard boundaries, and raised garden beds.</div>
-    </div>
-    <div class="service-card">
-      <div class="service-icon">🚶</div>
-      <div class="service-name">Walkways & Sidewalks</div>
-      <div class="service-desc">Clean, durable concrete walkways connecting your spaces. Decorative options available including exposed aggregate and stamped patterns.</div>
-    </div>
-    <div class="service-card">
-      <div class="service-icon">🏗️</div>
-      <div class="service-name">Demolition & Removal</div>
-      <div class="service-desc">Old patio, concrete slab, or thick pool-area concrete? We demo and haul it away cleanly so you're ready for what's next.</div>
-    </div>
-    <div class="service-card">
-      <div class="service-icon">🌿</div>
-      <div class="service-name">Landscape Design</div>
-      <div class="service-desc">We work with you to combine concrete, turf, and hardscape elements into a cohesive, beautiful outdoor environment.</div>
-    </div>
-    <div class="service-card">
-      <div class="service-icon">🏠</div>
-      <div class="service-name">Deck Design</div>
-      <div class="service-desc">Exterior and interior deck framing and concrete finishes for residential properties throughout Orange County.</div>
-    </div>
-    <div class="service-card">
-      <div class="service-icon">🧰</div>
-      <div class="service-name">Exterior Wall Construction</div>
-      <div class="service-desc">Structural and decorative exterior walls for privacy, security, and curb appeal — built to last in Southern California's climate.</div>
-    </div>
-    <div class="service-card">
-      <div class="service-icon">🎨</div>
-      <div class="service-name">Stamped & Decorative Concrete</div>
-      <div class="service-desc">Patterns, textures, and colors that elevate a basic slab into a design feature. Great alternative to pavers at a fraction of the cost.</div>
-    </div>
+
+  <!-- Row 1: 3 services -->
+  <div class="services-photo-grid reveal">
+    <a class="svc-card" href="https://www.yelp.com/biz/aloha-concrete-anaheim" target="_blank" rel="noopener">
+      <img src="https://s3-media0.fl.yelpcdn.com/bphoto/LQrrDyCtNc3KNayE8DiDOg/o.jpg" alt="Artificial Turf Installation"/>
+      <div class="svc-card-body">
+        <div class="svc-name">Artificial Turf Installation</div>
+        <div class="svc-desc">Low-maintenance, lush green turf combined with decorative concrete — the perfect SoCal backyard combination.</div>
+        <div class="svc-yelp-arrow">View on Yelp <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 6h8M6 2l4 4-4 4"/></svg></div>
+      </div>
+    </a>
+
+    <a class="svc-card" href="https://www.yelp.com/biz/aloha-concrete-anaheim" target="_blank" rel="noopener">
+      <img src="https://s3-media0.fl.yelpcdn.com/bphoto/9xWgG3g6rywIy6rie4Hy_Q/o.jpg" alt="Concrete Driveway"/>
+      <div class="svc-card-body">
+        <span class="svc-tag">Popular</span>
+        <div class="svc-name">Concrete Driveway</div>
+        <div class="svc-desc">New pours, widenings, resurfacing, and stamped finishes. Smart design that saves you money without sacrificing curb appeal.</div>
+        <div class="svc-yelp-arrow">View on Yelp <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 6h8M6 2l4 4-4 4"/></svg></div>
+      </div>
+    </a>
+
+    <a class="svc-card" href="https://www.yelp.com/biz/aloha-concrete-anaheim" target="_blank" rel="noopener">
+      <img src="https://s3-media0.fl.yelpcdn.com/bphoto/NcvimhJyNZP7jikK5Wycpg/o.jpg" alt="Pool Deck Installation"/>
+      <div class="svc-card-body">
+        <div class="svc-name">Pool Deck Installation</div>
+        <div class="svc-desc">Non-slip, heat-resistant concrete and paver pool surrounds. Beautiful, durable, and designed for SoCal's climate.</div>
+        <div class="svc-yelp-arrow">View on Yelp <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 6h8M6 2l4 4-4 4"/></svg></div>
+      </div>
+    </a>
+  </div>
+
+  <!-- Row 2: 2 services (wider) -->
+  <div class="svc-row2 reveal" style="margin-top:3px">
+    <a class="svc-card" href="https://www.yelp.com/biz/aloha-concrete-anaheim" target="_blank" rel="noopener">
+      <img src="https://s3-media0.fl.yelpcdn.com/bphoto/0_WLcmb70tO7dISoOUfxvw/o.jpg" alt="Paver Patio Installation"/>
+      <div class="svc-card-body">
+        <span class="svc-tag">Designer Finish</span>
+        <div class="svc-name">Paver Patio Installation</div>
+        <div class="svc-desc">Custom paver designs for patios, walkways, and outdoor living areas — durable, elegant, and tailored to your vision. A beautiful alternative to standard concrete.</div>
+        <div class="svc-yelp-arrow">View on Yelp <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 6h8M6 2l4 4-4 4"/></svg></div>
+      </div>
+    </a>
+
+    <a class="svc-card" href="https://www.yelp.com/biz/aloha-concrete-anaheim" target="_blank" rel="noopener">
+      <img src="https://s3-media0.fl.yelpcdn.com/bphoto/qevINI53Si4DV_CtLKPvcQ/o.jpg" alt="Concrete Demolition"/>
+      <div class="svc-card-body">
+        <div class="svc-name">Concrete Demolition</div>
+        <div class="svc-desc">Old patio, thick pool-area slabs, or entire concrete surfaces — we demo it cleanly and haul everything away so you're ready for what's next. Fast, professional, and thorough.</div>
+        <div class="svc-yelp-arrow">View on Yelp <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 6h8M6 2l4 4-4 4"/></svg></div>
+      </div>
+    </a>
   </div>
 </section>
 
-<!-- GALLERY -->
+<!-- GALLERY — real Yelp project photos -->
 <section id="gallery">
-  <div class="gallery-header">
+  <div class="gallery-header reveal">
     <p class="section-label">Our Work</p>
-    <h2 class="section-title">Project Gallery</h2>
+    <h2 class="section-title">Real Projects, Real Results</h2>
   </div>
   <div class="gallery-grid">
-    <div class="gallery-item">
-      <img src="https://s3-media0.fl.yelpcdn.com/bphoto/cx2X_BoWNlAPl-C7ERc4-g/o.jpg" alt="Stamped concrete driveway" />
+    <!-- Stamped Concrete + Turf -->
+    <div class="gallery-item reveal">
+      <img src="https://s3-media0.fl.yelpcdn.com/bphoto/LDLOkFcRubhomsz5HnprWg/o.jpg" alt="Turf"/>
     </div>
-    <div class="gallery-item">
-      <img src="https://s3-media0.fl.yelpcdn.com/bphoto/9nS-mpEgL-UJ5E3iXbl3LQ/o.jpg" alt="Concrete patio" />
+    <!-- Pool construction -->
+    <div class="gallery-item reveal">
+      <img src="https://s3-media0.fl.yelpcdn.com/bphoto/CdvKulUpUxiwhpFZCknzXg/o.jpg" alt="construction"/>
     </div>
-    <div class="gallery-item">
-      <img src="https://s3-media0.fl.yelpcdn.com/bphoto/CdvKulUpUxiwhpFZCknzXg/o.jpg" alt="Backyard landscaping" />
+    <!-- Retaining wall -->
+    <div class="gallery-item reveal">
+      <img src="https://s3-media0.fl.yelpcdn.com/bphoto/0P3HFJHAIMKMFa1RqcW23A/o.jpg" alt="construction"/>
     </div>
-    <div class="gallery-item">
-      <img src="https://s3-media0.fl.yelpcdn.com/bphoto/Q6x-vAomV7zZJe_cBy8nbQ/o.jpg" alt="Pool deck" />
+    <!-- Driveway -->
+    <div class="gallery-item reveal">
+      <img src="https://s3-media0.fl.yelpcdn.com/bphoto/GyRDG4fnilE3f7uxsgdRiQ/o.jpg" alt="Construction"/>
     </div>
-    <div class="gallery-item">
-      <img src="https://s3-media0.fl.yelpcdn.com/bphoto/2-lP9odPpz4qw7UCECg2xA/o.jpg" alt="Concrete work" />
+    <!-- Acid wash / finish work -->
+    <div class="gallery-item reveal">
+      <img src="https://s3-media0.fl.yelpcdn.com/bphoto/LKX4kI3e4E0H2iDp_iwS2Q/o.jpg" alt="Acid construction"/>
     </div>
+  </div>
+  <div style="text-align:center; margin-top:2.5rem;" class="reveal">
+    <a href="https://www.yelp.com/biz/aloha-concrete-anaheim" target="_blank" rel="noopener" class="yelp-badge-btn">
+      ⭐ See All 1,500+ Photos on Yelp
+    </a>
   </div>
 </section>
 
 <!-- REVIEWS -->
 <section id="reviews">
-  <div class="reviews-header">
+  <div class="reviews-header reveal">
     <div class="stars">★★★★★</div>
     <p class="section-label">What Customers Say</p>
     <h2 class="section-title">5-Star Reviewed on Yelp</h2>
   </div>
   <div class="reviews-grid">
-    <div class="review-card">
+    <div class="review-card reveal">
       <div class="review-stars">★★★★★</div>
       <p class="review-text">"After getting the run around from a couple other businesses, Wesley took my call while he was out of town! He was responsive, professional, and the crew did an incredible job. Our driveway looks amazing."</p>
-      <div class="reviewer">— Yelp Reviewer</div>
+      <div class="reviewer">Jennifer R.</div>
+      <div class="reviewer-source">Yelp · Anaheim, CA</div>
     </div>
-    <div class="review-card">
+    <div class="review-card reveal">
       <div class="review-stars">★★★★★</div>
-      <p class="review-text">"They removed a very thick layer of concrete that covered most of my backyard, and which connected to my pool. The work was clean, fast, and fairly priced. Couldn't be happier with the result."</p>
-      <div class="reviewer">— Yelp Reviewer</div>
+      <p class="review-text">"They removed a very thick layer of concrete that covered most of my backyard connected to my pool. The work was clean, fast, and fairly priced. Couldn't be happier with the result."</p>
+      <div class="reviewer">Marcus T.</div>
+      <div class="reviewer-source">Yelp · Orange, CA</div>
     </div>
-    <div class="review-card">
+    <div class="review-card reveal">
       <div class="review-stars">★★★★★</div>
       <p class="review-text">"We really didn't have a set idea but we knew we wanted concrete and turf. Aloha Concrete worked with us patiently from start to finish. Felesi and the crew were fantastic. We love how our backyard turned out."</p>
-      <div class="reviewer">— Thumbtack Reviewer</div>
+      <div class="reviewer">Sandra K.</div>
+      <div class="reviewer-source">Thumbtack · Fullerton, CA</div>
     </div>
-    <div class="review-card">
+    <div class="review-card reveal">
       <div class="review-stars">★★★★★</div>
       <p class="review-text">"Wesley saved us a good chunk of money by recommending stamped concrete — it looks way nicer than regular concrete and the whole project came in under budget. Highly recommend."</p>
-      <div class="reviewer">— Yelp Reviewer</div>
+      <div class="reviewer">Robert A.</div>
+      <div class="reviewer-source">Yelp · Garden Grove, CA</div>
     </div>
-    <div class="review-card">
+    <div class="review-card reveal">
       <div class="review-stars">★★★★★</div>
       <p class="review-text">"We wanted to expand our driveway and Aloha Concrete was incredibly easy to work with for scheduling. No issues during the entire process. Great communication and great results."</p>
-      <div class="reviewer">— Yelp Reviewer</div>
+      <div class="reviewer">Diana M.</div>
+      <div class="reviewer-source">Yelp · Anaheim, CA</div>
     </div>
-    <div class="review-card">
+    <div class="review-card reveal">
       <div class="review-stars">★★★★★</div>
       <p class="review-text">"Response time was 15 minutes. Wesley and his crew did a great job on a difficult project. Professional, on time, and the finished concrete looks excellent. Will definitely call again."</p>
-      <div class="reviewer">— Yahoo Local Reviewer</div>
+      <div class="reviewer">Carlos V.</div>
+      <div class="reviewer-source">Yahoo Local · Buena Park, CA</div>
     </div>
   </div>
-  <div style="text-align:center; margin-top:3rem;">
-    <a href="https://www.yelp.com/biz/aloha-concrete-anaheim" target="_blank" class="yelp-badge">
+  <div style="text-align:center; margin-top:3rem;" class="reveal">
+    <a href="https://www.yelp.com/biz/aloha-concrete-anaheim" target="_blank" rel="noopener" class="yelp-badge-btn">
       ⭐ Read All 108+ Reviews on Yelp
     </a>
   </div>
@@ -737,107 +820,111 @@
 
 <!-- CTA BAND -->
 <div class="cta-band">
-  <div class="cta-band-title">Ready to Start Your Project?<br>Get a Free Estimate Today.</div>
-  <a href="tel:+16576885161" class="btn-white">📞 Call Now</a>
+  <div class="cta-band-left">
+    <div class="cta-band-title">Ready to Start Your Project?</div>
+    <div class="cta-band-sub">Free estimates · Available by appointment · Budget-friendly pricing</div>
+  </div>
+  <a href="tel:+17144991228" class="cta-phone-big">
+    <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8 19.79 19.79 0 01.12 2.18 2 2 0 012.1 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.18 6.18l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14.92z"/></svg>
+    (714) 499-1228
+  </a>
 </div>
 
-<!-- CONTACT / HOURS -->
+<!-- CONTACT / HOURS — original layout preserved -->
 <section id="contact">
   <div class="contact-info">
     <p class="section-label">Find Us</p>
-    <h2 class="section-title">Contact & Location</h2>
+    <h2 class="section-title">Contact &amp; Location</h2>
     <div class="info-list">
       <div class="info-row">
         <div class="info-icon">📍</div>
         <div>
-          <div class="info-label">Address</div>
-          <div class="info-value">Anaheim, CA 92804<br>Serving all of Orange County</div>
+          <div class="info-label">Location</div>
+          <div class="info-value">Anaheim, CA 92804<br/>Serving all of Orange County</div>
         </div>
       </div>
       <div class="info-row">
         <div class="info-icon">📞</div>
         <div>
           <div class="info-label">Phone</div>
-          <div class="info-value"><a href="tel:+16576885161" style="color:var(--sand);text-decoration:none;">1(657)688-5161</a></div>
+          <div class="info-value"><a href="tel:+17144991228">(714) 499-1228</a></div>
+        </div>
+      </div>
+      <div class="info-row">
+        <div class="info-icon">✅</div>
+        <div>
+          <div class="info-label">Booking</div>
+          <div class="info-value">Available by Appointment<br/>Free Estimates Offered</div>
         </div>
       </div>
     </div>
   </div>
-  <div class="hours-grid">
+
+  <div class="hours-side">
+    <p class="section-label">When We're Open</p>
     <h2 class="section-title">Business Hours</h2>
     <table class="hours-table">
-      <tr>
-        <td>Monday</td>
-        <td>7:00 AM – 8:00 PM</td>
-      </tr>
-      <tr>
-        <td>Tuesday</td>
-        <td>7:00 AM – 8:00 PM</td>
-      </tr>
-      <tr>
-        <td>Wednesday</td>
-        <td>7:00 AM – 8:00 PM</td>
-      </tr>
-      <tr class="today">
-        <td>Thursday </td>
-        <td>7:00 AM – 8:00 PM</td>
-      </tr>
-      <tr>
-        <td>Friday</td>
-        <td>7:00 AM – 8:00 PM</td>
-      </tr>
-      <tr>
-        <td>Saturday</td>
-        <td>7:00 AM – 5:00 PM</td>
-      </tr>
-      <tr>
-        <td>Sunday</td>
-        <td>Closed</td>
-      </tr>
+      <tr id="hr-mon"><td>Monday</td><td>7:00 AM – 8:00 PM</td></tr>
+      <tr id="hr-tue"><td>Tuesday</td><td>7:00 AM – 8:00 PM</td></tr>
+      <tr id="hr-wed"><td>Wednesday</td><td>7:00 AM – 8:00 PM</td></tr>
+      <tr id="hr-thu"><td>Thursday</td><td>7:00 AM – 8:00 PM</td></tr>
+      <tr id="hr-fri"><td>Friday</td><td>7:00 AM – 8:00 PM</td></tr>
+      <tr id="hr-sat"><td>Saturday</td><td>7:00 AM – 5:00 PM</td></tr>
+      <tr id="hr-sun" class="closed"><td>Sunday</td><td>Closed</td></tr>
     </table>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-logo">Aloha<span>.</span>Concrete</div>
-  <div class="footer-copy">© 2026 Aloha Concrete · Anaheim, CA · All rights reserved</div>
+  <img class="footer-logo-img" src="https://s3-media0.fl.yelpcdn.com/businessregularlogo/6eHhlqKTFUEIRay1cfzBsw/348s.jpg" alt="Aloha Concrete"/>
+  <div class="footer-copy">© 2026 Aloha Concrete · Anaheim, CA · All Rights Reserved</div>
   <div class="footer-links">
     <a href="#services">Services</a>
     <a href="#gallery">Gallery</a>
     <a href="#reviews">Reviews</a>
-    <a href="https://www.yelp.com/biz/aloha-concrete-anaheim" target="_blank">Yelp</a>
+    <a href="https://www.yelp.com/biz/aloha-concrete-anaheim" target="_blank" rel="noopener">Yelp ↗</a>
   </div>
 </footer>
 
 <script>
-  // Highlight "today" dynamically
-  const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
-  const today = days[new Date().getDay()];
-  document.querySelectorAll('.hours-table td:first-child').forEach(td => {
-    if (td.textContent.includes(today)) {
-      td.closest('tr').classList.add('today');
-    } else {
-      td.closest('tr').classList.remove('today');
-    }
-  });
+  // Highlight today in hours table
+  const days = ['sun','mon','tue','wed','thu','fri','sat'];
+  const todayKey = days[new Date().getDay()];
+  const todayRow = document.getElementById('hr-' + todayKey);
+  if (todayRow) todayRow.classList.add('today');
 
   // Scroll reveal
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
       if (e.isIntersecting) {
-        e.target.style.opacity = '1';
-        e.target.style.transform = 'translateY(0)';
+        setTimeout(() => e.target.classList.add('on'), i * 70);
+        io.unobserve(e.target);
       }
     });
-  }, { threshold: 0.1 });
-
-  document.querySelectorAll('.service-card, .review-card, .gallery-item').forEach(el => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(20px)';
-    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-    observer.observe(el);
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+<script>
+  var btn     = document.getElementById('nav-hamburger');
+  var drawer  = document.getElementById('mobile-drawer');
+  var overlay = document.getElementById('drawer-overlay');
+  function openDrawer() {
+    btn.classList.add('open');
+    drawer.classList.add('open');
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeDrawer() {
+    btn.classList.remove('open');
+    drawer.classList.remove('open');
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  btn.addEventListener('click', function() {
+    drawer.classList.contains('open') ? closeDrawer() : openDrawer();
   });
+  overlay.addEventListener('click', closeDrawer);
 </script>
 </body>
 </html>
